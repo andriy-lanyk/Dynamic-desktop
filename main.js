@@ -1,9 +1,10 @@
+import wishes from "./wishes.js";
+
 const time = document.querySelector('.time');
 const date = document.querySelector('.date');
 const greetingText = document.querySelector('.greeting-text');
 const greetingName = document.querySelector('.greeting-name');
-const plan = document.querySelector('.plan');
-const task = document.querySelector('.task');
+const wish = document.querySelector('.wish');
 
 function showTime() {
     let today = new Date();
@@ -47,7 +48,7 @@ function greeting() {
         greetingText.textContent = 'Добрый день';
         document.body.style.backgroundImage = "url('./img/Afternoon.jpg')";
         document.body.style.color = "Indigo";
-    } else if (hour >= 18 && hour <= 22) {
+    } else if (hour >= 18 && hour < 22) {
         greetingText.textContent = 'Добрый вечер';
         document.body.style.background = "linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4) ), url('./img/Evening.jpg')";
         document.body.style.backgroundSize = "cover";
@@ -55,7 +56,7 @@ function greeting() {
     } else {
         greetingText.textContent = 'Доброй ночи';
         document.body.style.backgroundImage = "url('./img/Night.jpg')";
-        document.body.style.color = "white";
+        document.body.style.color = "LightGrey";
     }
 }
 
@@ -63,22 +64,12 @@ greeting();
 
 greetingName.addEventListener("keypress", setName);
 greetingName.addEventListener("blur", setName);
-task.addEventListener("keypress", setTask);
-task.addEventListener("blur", setTask);
 
 function getName () {
     if (localStorage.getItem('name') === null || localStorage.getItem('name') === "") {
         greetingName.textContent = '/введите свое имя/';
     } else {
         greetingName.textContent = localStorage.getItem('name');
-    }
-};
-
-function getTask () {
-    if (localStorage.getItem('task') === null || localStorage.getItem('task') === "") {
-        task.textContent = '/введите задание/'
-    } else {
-        task.textContent = localStorage.getItem('task');
     }
 };
 
@@ -93,21 +84,19 @@ function setName (event) {
     }
 };
 
-function setTask (event) {
-    if (event.type === 'keypress') {
-        if (event.which == 13 || event.keyCode == 13) {
-        localStorage.setItem('task', event.target.innerText);
-        task.blur();
-        }    
-    } else {
-        localStorage.setItem('task', event.target.innerText)
-    }
+getName();
+
+function choiceOfWishes() { return [...wishes][Math.floor(Math.random() * (([...wishes].length) - 0 + 1)) + 0].toLowerCase() };
+
+function printWish() {
+    wish.textContent = choiceOfWishes();
+    wish.style.textDecoration = "underline";
+
+    setTimeout(printWish, 60000);
 };
 
-getName();
-getTask();
-
-console.log(localStorage.getItem('name'));
-console.log(localStorage.getItem('task'));
+if (localStorage.getItem('name') != "[введите свое имя]") {
+    printWish();
+}
 
 
