@@ -44,6 +44,7 @@ function greeting() {
     if (hour >= 5 && hour < 11) {
         greetingText.textContent = 'Доброе утро';
         document.body.style.backgroundImage = "url('./img/Morning.jpg')";
+        document.body.style.color = "Maroon";
     } else if (hour >= 11 && hour < 18) {
         greetingText.textContent = 'Добрый день';
         document.body.style.backgroundImage = "url('./img/Afternoon.jpg')";
