@@ -95,7 +95,8 @@ function printWish() {
     setTimeout(printWish, 60000);
 };
 
-if (localStorage.getItem('name') != "[введите свое имя]") {
+if (localStorage.getItem('name')) {
+    console.log(localStorage.getItem('name'));
     printWish();
 }
 
