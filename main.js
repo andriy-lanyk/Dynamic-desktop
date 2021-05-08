@@ -47,7 +47,7 @@ function greeting() {
     } else if (hour >= 11 && hour < 18) {
         greetingText.textContent = 'Добрый день';
         document.body.style.backgroundImage = "url('./img/Afternoon.jpg')";
-        document.body.style.color = "Indigo";
+        document.body.style.color = "Yellow";
     } else if (hour >= 18 && hour < 22) {
         greetingText.textContent = 'Добрый вечер';
         document.body.style.background = "linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4) ), url('./img/Evening.jpg')";
@@ -67,9 +67,9 @@ greetingName.addEventListener("blur", setName);
 
 function getName () {
     if (localStorage.getItem('name') === null || localStorage.getItem('name') === "") {
-        greetingName.textContent = '/введите свое имя/';
+        greetingName.textContent = '[введите свое имя]';
     } else {
-        greetingName.textContent = localStorage.getItem('name');
+        greetingName.textContent = `${localStorage.getItem('name')}!`;
     }
 };
 
@@ -89,7 +89,7 @@ getName();
 function choiceOfWishes() { return [...wishes][Math.floor(Math.random() * (([...wishes].length) - 0 + 1)) + 0].toLowerCase() };
 
 function printWish() {
-    wish.textContent = choiceOfWishes();
+    wish.textContent = ` ${choiceOfWishes()}`;
     wish.style.textDecoration = "underline";
 
     setTimeout(printWish, 60000);
@@ -98,6 +98,4 @@ function printWish() {
 if (localStorage.getItem('name')) {
     console.log(localStorage.getItem('name'));
     printWish();
-}
-
-
+};

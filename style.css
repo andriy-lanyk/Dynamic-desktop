@@ -5,6 +5,7 @@
 }
 
 body {
+  padding: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,7 +14,7 @@ body {
 
   font-family: 'Montserrat Alternates', sans-serif;
   font-weight: bold;
-  color: MidnightBlue;
+  color: Maroon;
 
   background-color: grey;
   background-size: cover;
@@ -21,13 +22,23 @@ body {
 }
 
 .time {
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   font-size: 68px;
+}
+@media screen and (max-width: 768px) {
+  .time {
+    font-size: 48px;
+  }
 }
 
 .date {
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   font-size: 32px;
+}
+@media screen and (max-width: 768px) {
+  .date {
+    font-size: 24px;
+  }
 }
 
 .greeting {
@@ -35,9 +46,24 @@ body {
   font-size: 40px;
   font-style: italic;
 }
+@media screen and (max-width: 768px) {
+  .greeting {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    font-size: 32px;
+  }
+}
 
 .wishes {
+  display: block;
+  text-align: center;
   font-size: 24px;
+}
+@media screen and (max-width: 768px) {
+  .wishes {
+    font-size: 20px;
+  }
 }
 
 .wish {
