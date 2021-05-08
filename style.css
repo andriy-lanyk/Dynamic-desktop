@@ -1,0 +1,46 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+
+  font-family: 'Montserrat Alternates', sans-serif;
+  font-weight: bold;
+  color: MidnightBlue;
+
+  background-image: url(./img/Afternoon.jpg);
+  background-color: grey;
+  background-size: cover;
+  /* background-repeat: no-repeat; */
+}
+
+.time {
+  margin-bottom: 15px;
+  font-size: 68px;
+}
+
+.date {
+  margin-bottom: 20px;
+  font-size: 32px;
+}
+
+.greeting {
+  margin-bottom: 40px;
+  font-size: 40px;
+  font-style: italic;
+}
+
+.wishes {
+  font-size: 24px;
+}
+
+.wish {
+  font-style: italic;
+}
