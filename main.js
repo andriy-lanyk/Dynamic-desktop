@@ -5,6 +5,7 @@ const date = document.querySelector('.date');
 const greetingText = document.querySelector('.greeting-text');
 const greetingName = document.querySelector('.greeting-name');
 const wish = document.querySelector('.wish');
+var timeoutID;
 
 function showTime() {
   let today = new Date();
@@ -82,10 +83,11 @@ greetingName.addEventListener('click', changeGreetingNameText);
 
 function changeGreetingNameText() {
   greetingName.textContent = ' ';
-  greetingName.style.width = '10px';
   wish.textContent = '[желание появиться когда я узнаю Ваше имя]';
+  clearTimeout(timeoutID);
   setTimeout(function () {
     greetingName.focus();
+    greetingName.style.outline = 'solid';
   }, 0);
 }
 
@@ -96,21 +98,35 @@ function getName() {
   ) {
     greetingName.textContent = '[введите свое имя]';
     wish.textContent = '[желание появиться когда я узнаю Ваше имя]';
+    clearTimeout(timeoutID);
   } else {
     greetingName.textContent = `${localStorage.getItem('name')}!`;
+    printWish();
   }
 }
 
 function setName(event) {
   if (event.type === 'keypress') {
-    greetingName.style.width = '';
+    greetingName.style.outline = '';
     if (event.which == 13 || event.keyCode == 13) {
       localStorage.setItem('name', event.target.innerText);
       greetingName.blur();
-      printWish();
+      getName();
     }
   } else {
     localStorage.setItem('name', event.target.innerText);
+  }
+}
+
+document.body.addEventListener('click', startWish);
+
+function startWish(e) {
+  const target = e.target;
+
+  if (target !== greetingName) {
+    clearTimeout(timeoutID);
+    greetingName.style.outline = '';
+    getName();
   }
 }
 
@@ -126,7 +142,7 @@ function printWish() {
   wish.textContent = ` ${choiceOfWishes()}`;
   wish.style.textDecoration = 'underline';
 
-  setTimeout(printWish, 30000);
+  timeoutID = setTimeout(printWish, 5000);
 }
 
 if (localStorage.getItem('name')) {
