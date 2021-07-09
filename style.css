@@ -55,6 +55,10 @@ body {
   }
 }
 
+.greeting-name {
+  margin-left: 5px;
+}
+
 .wishes {
   display: block;
   text-align: center;

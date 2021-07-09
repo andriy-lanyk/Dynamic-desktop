@@ -101,13 +101,14 @@ function getName() {
     clearTimeout(timeoutID);
   } else {
     greetingName.textContent = `${localStorage.getItem('name')}!`;
+    clearTimeout(timeoutID);
     printWish();
   }
 }
 
 function setName(event) {
+  greetingName.style.outline = '';
   if (event.type === 'keypress') {
-    greetingName.style.outline = '';
     if (event.which == 13 || event.keyCode == 13) {
       localStorage.setItem('name', event.target.innerText);
       greetingName.blur();
@@ -115,17 +116,6 @@ function setName(event) {
     }
   } else {
     localStorage.setItem('name', event.target.innerText);
-  }
-}
-
-document.body.addEventListener('click', startWish);
-
-function startWish(e) {
-  const target = e.target;
-
-  if (target !== greetingName) {
-    clearTimeout(timeoutID);
-    greetingName.style.outline = '';
     getName();
   }
 }
@@ -134,7 +124,7 @@ getName();
 
 function choiceOfWishes() {
   return [...wishes][
-    Math.floor(Math.random() * ([...wishes].length - 0 + 1)) + 0
+    Math.ceil(Math.random() * ([...wishes].length - 1 - 1)) + 0
   ].toLowerCase();
 }
 
@@ -142,9 +132,5 @@ function printWish() {
   wish.textContent = ` ${choiceOfWishes()}`;
   wish.style.textDecoration = 'underline';
 
-  timeoutID = setTimeout(printWish, 5000);
-}
-
-if (localStorage.getItem('name')) {
-  printWish();
+  timeoutID = setTimeout(printWish, 20000);
 }
